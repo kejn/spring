@@ -1,2 +1,2 @@
-# spring_di_aop
+# starter-kit : spring_di_aop
 Annotations > XML ?

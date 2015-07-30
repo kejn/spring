@@ -21,8 +21,10 @@ public class BookDaoAdvisor implements MethodBeforeAdvice {
 	}
 
 	private void checkNotNullId(Object o) {
-		if (o instanceof IdAware && ((IdAware) o).getId() != null) {
-			throw new BookNotNullIdException();
+		if (o instanceof IdAware) {
+			if(((IdAware) o).getId() != null) {
+				throw new BookNotNullIdException();
+			}
 		}
 	}
 

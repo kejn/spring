@@ -11,6 +11,7 @@ import pl.spring.demo.to.BookTo;
 
 @Service
 public class BookServiceImpl implements BookService {
+	@Autowired
     private BookDao bookDao;
 
     @Override
@@ -32,9 +33,8 @@ public class BookServiceImpl implements BookService {
     public BookTo saveBook(BookTo book) {
         return bookDao.save(book);
     }
-
-    @Autowired
+    
     public void setBookDao(BookDao bookDao) {
-        this.bookDao = bookDao;
+    	this.bookDao = bookDao;
     }
 }

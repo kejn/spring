@@ -5,14 +5,18 @@ package pl.spring.demo.mock;
  * All rights reserved
  */
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.*;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+
 import pl.spring.demo.dao.BookDao;
 import pl.spring.demo.service.impl.BookServiceImpl;
 import pl.spring.demo.to.BookTo;
-
-import static org.junit.Assert.assertEquals;
 
 /**
  * TODO The class BookServiceImplTest is supposed to be documented...

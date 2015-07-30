@@ -6,14 +6,14 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import pl.spring.demo.annotation.NullableId;
 import pl.spring.demo.common.Sequence;
 import pl.spring.demo.dao.BookDao;
 import pl.spring.demo.to.BookTo;
 
-@Component
+@Service
 public class BookDaoImpl implements BookDao {
 
     private final Set<BookTo> ALL_BOOKS = new HashSet<>();
@@ -52,6 +52,10 @@ public class BookDaoImpl implements BookDao {
     
     public void setSequence(Sequence sequence) {
     	this.sequence = sequence;
+    }
+
+    public Sequence getSequence() {
+    	return this.sequence;
     }
     
     private void addTestBooks() {

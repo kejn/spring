@@ -7,7 +7,6 @@ import static org.junit.Assert.fail;
 
 import java.util.List;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,15 +27,24 @@ public class BookServiceImplTest {
     public void testShouldFindAllBooks() {
         // when
         List<BookTo> allBooks = bookService.findAllBooks();
+        List<BookTo> allBooksByTitle = bookService.findBooksByTitle("");
+        List<BookTo> allBooksByAuthor = bookService.findBooksByAuthor("");
         // then
         assertNotNull(allBooks);
         assertFalse(allBooks.isEmpty());
         assertEquals(6, allBooks.size());
+        
+        assertNotNull(allBooksByTitle);
+        assertFalse(allBooksByTitle.isEmpty());
+        assertEquals(6, allBooksByTitle.size());
+        
+        assertNotNull(allBooksByAuthor);
+        assertFalse(allBooksByAuthor.isEmpty());
+        assertEquals(6, allBooksByAuthor.size());
     }
 
     @Test
-    @Ignore
-    public void testShouldFindAllBooksByTitle() {
+    public void testShouldFindBooksByTitle() {
         // given
         final String title = "Opium w rosole";
         // when
@@ -44,6 +52,17 @@ public class BookServiceImplTest {
         // then
         assertNotNull(booksByTitle);
         assertFalse(booksByTitle.isEmpty());
+    }
+
+    @Test
+    public void testShouldFindBooksByAuthor() {
+    	// given
+    	final String author = "Wi";
+    	// when
+    	List<BookTo> booksByTitle = bookService.findBooksByAuthor(author);
+    	// then
+    	assertNotNull(booksByTitle);
+    	assertFalse(booksByTitle.isEmpty());
     }
 
     @Test(expected = BookNotNullIdException.class)

@@ -38,7 +38,7 @@ public class BookDaoImpl implements BookDao {
 		List<BookEntity> matchTitle = new ArrayList<>();
 		
 		for (BookEntity bookEntity : ALL_BOOKS) {
-			if (bookEntity.getTitle().startsWith(title)) {
+			if (bookEntity.getTitle().toLowerCase().startsWith(title.toLowerCase())) {
 				matchTitle.add(bookEntity);
 			}
 		}
@@ -51,8 +51,8 @@ public class BookDaoImpl implements BookDao {
 		
 		for (BookEntity bookEntity : ALL_BOOKS) {
 			for (AuthorTo authorTo : bookEntity.getAuthors()) {
-				boolean matchLastName = authorTo.getLastName().startsWith(author); 
-				boolean matchFirstName = authorTo.getFirstName().startsWith(author); 
+				boolean matchLastName = authorTo.getLastName().toLowerCase().startsWith(author.toLowerCase()); 
+				boolean matchFirstName = authorTo.getFirstName().toLowerCase().startsWith(author.toLowerCase()); 
 				if (matchLastName || matchFirstName) {
 					matchAuthor.add(bookEntity);
 					break;

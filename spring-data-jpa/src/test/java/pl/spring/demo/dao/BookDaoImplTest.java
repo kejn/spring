@@ -49,5 +49,5 @@ public class BookDaoImplTest {
 		// then
 		assertEquals(id, result.getId().longValue());
 	}
-
+	
 }

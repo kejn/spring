@@ -19,4 +19,9 @@ public class BookTo extends Book {
     public void setAuthors(String authors) {
         this.authors = authors;
     }
+    
+    @Override
+    public String toString() {
+    	return super.toString() + authors;
+    }
 }

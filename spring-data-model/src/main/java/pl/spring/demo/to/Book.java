@@ -1,6 +1,6 @@
 package pl.spring.demo.to;
 
-public class Book implements IdAware {
+public abstract class Book implements IdAware {
 	private Long id;
     private String title;
     
@@ -27,6 +27,11 @@ public class Book implements IdAware {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+    
+    @Override
+    public String toString() {
+    	return id + " \"" + title + "\" ";
     }
 
 }

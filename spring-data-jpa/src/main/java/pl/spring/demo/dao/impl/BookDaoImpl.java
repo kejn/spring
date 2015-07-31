@@ -65,9 +65,6 @@ public class BookDaoImpl implements BookDao {
 	@Override
 	@NullableId
 	public BookEntity save(BookEntity book) {
-		if (book.getId() == null) {
-			book.setId(sequence.nextValue(ALL_BOOKS));
-		}
 		ALL_BOOKS.add(book);
 		return book;
 	}

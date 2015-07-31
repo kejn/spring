@@ -2,52 +2,30 @@ package pl.spring.demo.dao;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
-import org.mockito.MockitoAnnotations;
-import org.mockito.internal.util.reflection.Whitebox;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import pl.spring.demo.common.Sequence;
-import pl.spring.demo.dao.impl.BookDaoImpl;
 import pl.spring.demo.to.BookEntity;
-import pl.spring.demo.to.BookMapper;
-import pl.spring.demo.to.BookTo;
 
-
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "CommonDaoTest-context.xml")
 public class BookDaoImplTest {
-	@InjectMocks
-	private BookDaoImpl bookDaoImpl;
-	
-	private BookMapper bookMapper;
-	
 
-	@Before
-	public void setUpt() {
-		MockitoAnnotations.initMocks(this);
-		Whitebox.setInternalState(bookDaoImpl, "sequence", new Sequence());
-		bookMapper = new BookMapper();
-	}
-
-	@Test
+    @Autowired
+    private BookDao bookDao;
+    
+    @Test
 	public void bookWithNullIdSavedWithNotNullId() {
 		// given
-		BookEntity book = bookMapper.toBookEntity(new BookTo(null, "title", "author"));
+		BookEntity book = new BookEntity();
 		// when
-		BookEntity result = bookDaoImpl.save(book);
+		BookEntity result = bookDao.save(book);
 		// then
 		assertEquals(7L, result.getId().longValue());
 	}
+    
 
-	@Test
-	public void bookWithNotNullIdSavedWithTheSameId() {
-		// given
-		long id = 99L;
-		BookEntity book = bookMapper.toBookEntity(new BookTo(id, "title", "author"));
-		// when
-		BookEntity result = bookDaoImpl.save(book);
-		// then
-		assertEquals(id, result.getId().longValue());
-	}
-	
 }

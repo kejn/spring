@@ -5,17 +5,23 @@ package pl.spring.demo.mock;
  * All rights reserved
  */
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.internal.util.reflection.Whitebox;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 
 import pl.spring.demo.dao.BookDao;
 import pl.spring.demo.service.impl.BookServiceImpl;
+import pl.spring.demo.to.BookEntity;
+import pl.spring.demo.to.BookMapper;
 import pl.spring.demo.to.BookTo;
 
 /**
@@ -25,25 +31,41 @@ import pl.spring.demo.to.BookTo;
  */
 public class BookServiceImplTest {
 
-    @InjectMocks
-    private BookServiceImpl bookService;
-    @Mock
-    private BookDao bookDao;
+	@InjectMocks
+	private BookServiceImpl bookService;
+	
+//	@InjectMocks
+	private BookMapper bookMapper;
+	
+	@Mock
+	private BookDao bookDao;
 
-    @Before
-    public void setUpt() {
-        MockitoAnnotations.initMocks(this);
-    }
+	@Before
+	public void setUpt() {
+		bookMapper = new BookMapper();
+		MockitoAnnotations.initMocks(this);
+		Whitebox.setInternalState(bookService, "bookMapper", bookMapper);
+	}
 
-    @Test
-    public void testShouldSaveBook() {
-        // given
-        BookTo book = new BookTo(null, "title", "author");
-        Mockito.when(bookDao.save(book)).thenReturn(new BookTo(1L, "title", "author"));
-        // when
-        BookTo result = bookService.saveBook(book);
-        // then
-        Mockito.verify(bookDao).save(book);
-        assertEquals(1L, result.getId().longValue());
-    }
+	@Test
+	public void testShouldSaveBook() {
+		// given
+		BookTo book = new BookTo(null, "title", "author");
+		Mockito.when(bookDao.save(Mockito.any(BookEntity.class))).thenAnswer(new Answer<BookEntity>() {
+			@Override
+			public BookEntity answer(InvocationOnMock invocation) throws Throwable {
+				BookEntity param = (BookEntity) invocation.getArguments()[0];
+				param.setId(11L);
+				return param;
+			}
+		});
+		// when
+		BookTo result = bookService.saveBook(book);
+		// then
+		ArgumentCaptor<BookEntity> cappture = ArgumentCaptor.forClass(BookEntity.class);
+		Mockito.verify(bookDao).save(cappture.capture());
+		assertEquals(11L, result.getId().longValue());
+		assertNotNull(cappture.getValue().getId());
+		assertEquals(11L, cappture.getValue().getId().longValue());
+	}
 }

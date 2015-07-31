@@ -1,34 +1,15 @@
 package pl.spring.demo.to;
 
-public class BookTo implements IdAware {
-    private Long id;
-    private String title;
+public class BookTo extends Book {
     private String authors;
 
     public BookTo() {
+    	super();
     }
 
     public BookTo(Long id, String title, String authors) {
-        this.id = id;
-        this.title = title;
+        super(id,title);
         this.authors = authors;
-    }
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getAuthors() {

@@ -1,6 +1,6 @@
 package pl.spring.demo.dao;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,6 +24,7 @@ public class BookDaoImplTest {
 		// when
 		BookEntity result = bookDao.save(book);
 		// then
+		assertNotNull(result.getId().longValue());
 		assertEquals(7L, result.getId().longValue());
 	}
     

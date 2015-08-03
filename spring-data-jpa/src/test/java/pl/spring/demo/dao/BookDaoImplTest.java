@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import pl.spring.demo.exception.BookNotNullIdException;
 import pl.spring.demo.to.BookEntity;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -25,8 +26,18 @@ public class BookDaoImplTest {
 		BookEntity result = bookDao.save(book);
 		// then
 		assertNotNull(result.getId().longValue());
-		assertEquals(7L, result.getId().longValue());
 	}
+
+    @Test(expected = BookNotNullIdException.class)
+    public void bookWithNotNullThrowsNotNullIdException() {
+    	// given
+    	BookEntity book = new BookEntity();
+    	book.setId(2L);
+    	// when
+    	bookDao.save(book);
+    	// then
+    	fail("Should've thrown a BookNotNullIdException");
+    }
     
 
 }

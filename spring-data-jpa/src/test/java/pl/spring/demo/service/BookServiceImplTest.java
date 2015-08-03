@@ -59,10 +59,10 @@ public class BookServiceImplTest {
     	// given
     	final String author = "Wi";
     	// when
-    	List<BookTo> booksByTitle = bookService.findBooksByAuthor(author);
+    	List<BookTo> booksByAuthor = bookService.findBooksByAuthor(author);
     	// then
-    	assertNotNull(booksByTitle);
-    	assertFalse(booksByTitle.isEmpty());
+    	assertNotNull(booksByAuthor);
+    	assertFalse(booksByAuthor.isEmpty());
     }
 
     @Test(expected = BookNotNullIdException.class)

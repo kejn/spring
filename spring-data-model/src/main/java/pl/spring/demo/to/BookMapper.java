@@ -58,11 +58,12 @@ public class BookMapper {
 	}
 
 	private String authorsToString(List<AuthorTo> bookEntityAuthors) {
-		String authors = new String();
+		StringBuilder authors = new StringBuilder();
 		for (AuthorTo author : bookEntityAuthors) {
-			authors += author.getFirstName() + " " + author.getLastName() + ",";
+			authors.append(author.getFirstName() + " " + author.getLastName() + ",");
 		}
-		return authors.substring(0,authors.length()-1);
+		authors.deleteCharAt(authors.length()-1);
+		return authors.toString();
 	}
 	
 	

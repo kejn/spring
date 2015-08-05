@@ -1,3 +1,80 @@
+/* GLOBAL SETTINGS */
+body, p, a, div, table, tr, td, th, span {
+	margin: 0;
+	padding: 0;
+	font-family: arial;
+	font-size: 12pt;
+}
+body {
+	background-color: #5D5D5D;
+}
+.content {
+	width: 700px;
+	margin: 10px auto;
+	padding: 0;
+}
+
+/* MY SETTINGS #nav */
+div#nav {
+	background-color: white;
+}
+div#nav .content div {
+	display: inline-block;
+	padding: 10px;
+	font-weight: bold;
+}
+div#nav a {
+	font-size: 16pt;
+	text-decoration: none;
+	color: deepskyblue;
+}
+div#nav a:hover {
+	border-bottom: 2px solid deepskyblue;
+}
+
+/* MY SETTINGS home */
 .sample {
-    color: red;
+    color: white;
+}
+
+/* MY SETTINGS bookList*/
+table {
+	width: 100%;
+	border-spacing: 0;
+}
+table#bookList {
+	margin-top: 20px;
+}
+
+table tr:nth-child(odd) {
+	background-color: #99E5FF;
+}
+table tr:nth-child(even) {
+	background-color: ghostwhite;
+}
+table tr td,th {
+	padding: 10px;
+	border-top: 1px solid black;
+	/* border-bottom: 1px solid black; */
+	text-align: left;
+}
+table tr th {
+	border: none;
+	background-color: deepskyblue;
+}
+
+input[type=button] {
+	padding: 2px 7px;
+	border: 1px solid #707070;
+}
+input[type=button]:hover {
+	padding: 2px 7px;
+	background-color: #A6FEFF;
+	border: 1px solid #26A0DA;
+	cursor: pointer;
+}
+input[type=button]:active {
+	background-color: #A6FEFF;
+	border: 1px solid #26A0DA;
+	cursor: pointer;
 }

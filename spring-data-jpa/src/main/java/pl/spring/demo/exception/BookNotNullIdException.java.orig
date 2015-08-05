@@ -1,0 +1,8 @@
+package pl.spring.demo.exception;
+
+<<<<<<< HEAD
+=======
+@SuppressWarnings("serial")
+>>>>>>> spring_di_aop
+public class BookNotNullIdException extends RuntimeException {
+}

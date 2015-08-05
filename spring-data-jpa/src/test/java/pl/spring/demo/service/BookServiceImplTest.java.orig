@@ -1,0 +1,110 @@
+package pl.spring.demo.service;
+
+<<<<<<< HEAD
+import org.junit.Ignore;
+=======
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
+
+import java.util.List;
+
+>>>>>>> spring_di_aop
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+<<<<<<< HEAD
+import pl.spring.demo.exception.BookNotNullIdException;
+import pl.spring.demo.to.BookTo;
+
+import java.util.List;
+
+import static org.junit.Assert.*;
+
+=======
+
+import pl.spring.demo.exception.BookNotNullIdException;
+import pl.spring.demo.to.BookTo;
+
+>>>>>>> spring_di_aop
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "CommonServiceTest-context.xml")
+public class BookServiceImplTest {
+
+    @Autowired
+    private BookService bookService;
+
+    @Test
+    public void testShouldFindAllBooks() {
+        // when
+        List<BookTo> allBooks = bookService.findAllBooks();
+<<<<<<< HEAD
+=======
+        List<BookTo> allBooksByTitle = bookService.findBooksByTitle("");
+        List<BookTo> allBooksByAuthor = bookService.findBooksByAuthor("");
+>>>>>>> spring_di_aop
+        // then
+        assertNotNull(allBooks);
+        assertFalse(allBooks.isEmpty());
+        assertEquals(6, allBooks.size());
+<<<<<<< HEAD
+    }
+
+    @Test
+    @Ignore
+    public void testShouldFindAllBooksByTitle() {
+=======
+        
+        assertNotNull(allBooksByTitle);
+        assertFalse(allBooksByTitle.isEmpty());
+        assertEquals(6, allBooksByTitle.size());
+        
+        assertNotNull(allBooksByAuthor);
+        assertFalse(allBooksByAuthor.isEmpty());
+        assertEquals(6, allBooksByAuthor.size());
+    }
+
+    @Test
+    public void testShouldFindBooksByTitle() {
+>>>>>>> spring_di_aop
+        // given
+        final String title = "Opium w rosole";
+        // when
+        List<BookTo> booksByTitle = bookService.findBooksByTitle(title);
+        // then
+        assertNotNull(booksByTitle);
+        assertFalse(booksByTitle.isEmpty());
+    }
+
+<<<<<<< HEAD
+=======
+    @Test
+    public void testShouldFindBooksByAuthor() {
+    	// given
+    	final String author = "Wi";
+    	// when
+    	List<BookTo> booksByAuthor = bookService.findBooksByAuthor(author);
+    	// then
+    	assertNotNull(booksByAuthor);
+    	assertFalse(booksByAuthor.isEmpty());
+    }
+
+>>>>>>> spring_di_aop
+    @Test(expected = BookNotNullIdException.class)
+    public void testShouldThrowBookNotNullIdException() {
+        // given
+        final BookTo bookToSave = new BookTo();
+        bookToSave.setId(22L);
+        // when
+        bookService.saveBook(bookToSave);
+        // then
+        fail("test should throw BookNotNullIdException");
+    }
+<<<<<<< HEAD
+=======
+
+>>>>>>> spring_di_aop
+}

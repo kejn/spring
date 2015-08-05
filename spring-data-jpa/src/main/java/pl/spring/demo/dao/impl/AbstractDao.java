@@ -27,19 +27,19 @@ public abstract class AbstractDao<T, K extends Serializable> implements Dao<T, K
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+//    @SuppressWarnings("unchecked")
     public T getOne(K id) {
         return entityManager.getReference(getDomainClass(), id);
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+//    @SuppressWarnings("unchecked")
     public T findOne(K id) {
         return entityManager.find(getDomainClass(), id);
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+//    @SuppressWarnings("unchecked")
     public List<T> findAll() {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<T> criteriaQuery = builder.createQuery(getDomainClass());

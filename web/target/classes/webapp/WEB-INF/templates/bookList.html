@@ -2,11 +2,39 @@
 <html xmlns:th="http://thymeleaf.org">
 <head lang="en">
     <meta charset="UTF-8"/>
+    <link rel="stylesheet" th:href="@{/static/application.css}" href="/static/application.css" />
     <title>Lista książek</title>
 </head>
 <body>
-    <div th:each="book : ${books}">
-        <p th:text="${book.title}">title</p>
+	<div id="nav">
+		<div class="content">
+			<div>
+				<a href="home">Home</a>
+			</div>
+			<div>
+				<a href="books">Book list</a>
+			</div>
+		</div>
+	</div>
+	<div class="content">
+	    <table id="bookList">
+	    	<tr>
+	    		<th>ID</th>
+	    		<th>Book title</th>
+	    		<th>Authors</th>
+	    		<th>Action</th>
+	    	</tr>
+	    	<tr th:each="book : ${books}" onmouseover="showButton" onmouseout="hidebutton">
+	        	<td th:text="${book.id}">id</td>
+	        	<td th:text="${book.title}">title</td>
+	        	<td th:text="${book.authors}">authors</td>
+	        	<td>
+	        		<form action="submit" >
+	        			<input type="button" value="Delete" name="deleteBook" />
+	       			</form>
+				</td>
+	        </tr>
+	    </table>
     </div>
 </body>
 </html>

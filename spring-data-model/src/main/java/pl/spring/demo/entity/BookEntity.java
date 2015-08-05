@@ -6,7 +6,8 @@ import java.io.Serializable;
 @Entity
 @Table(name = "BOOK")
 public class BookEntity implements Serializable {
-    @Id
+	private static final long serialVersionUID = 1722761677496773798L;
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(nullable = false, length = 50)

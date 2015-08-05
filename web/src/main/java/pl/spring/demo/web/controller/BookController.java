@@ -1,14 +1,16 @@
 package pl.spring.demo.web.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import pl.spring.demo.service.BookService;
-import pl.spring.demo.to.BookTo;
-
 import java.util.List;
 import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import pl.spring.demo.service.BookService;
+import pl.spring.demo.to.BookTo;
 
 @Controller
 public class BookController {
@@ -20,5 +22,19 @@ public class BookController {
         final List<BookTo> allBooks = bookService.findAllBooks();
         params.put("books", allBooks);
         return "bookList";
+    }
+
+    @RequestMapping(value = "/delete/book/{id}", method = RequestMethod.GET)
+    public String bookDelete(@PathVariable("id") String id, Map<String, Object> params) {
+    	Long longId = Long.parseLong(id);
+    	final List<BookTo> allBooks = bookService.findAllBooks();
+    	for (BookTo bookTo : allBooks) {
+			if(bookTo.getId().equals(longId)) {
+				params.put("title", bookTo.getTitle());
+				break;
+			}
+		}
+    	bookService.deleteBook(longId);
+    	return "deleteMessage";
     }
 }

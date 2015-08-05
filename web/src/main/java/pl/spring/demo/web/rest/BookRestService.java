@@ -7,6 +7,7 @@ import pl.spring.demo.service.BookService;
 import pl.spring.demo.to.BookTo;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @ResponseBody
@@ -24,4 +25,5 @@ public class BookRestService {
     public BookTo saveBook(@RequestBody BookTo book) {
         return bookService.saveBook(book);
     }
+    
 }

@@ -24,13 +24,13 @@
 	    		<th>Authors</th>
 	    		<th>Action</th>
 	    	</tr>
-	    	<tr th:each="book : ${books}" onmouseover="showButton" onmouseout="hidebutton">
+	    	<tr th:each="book : ${books}">
 	        	<td th:text="${book.id}">id</td>
 	        	<td th:text="${book.title}">title</td>
 	        	<td th:text="${book.authors}">authors</td>
 	        	<td>
-	        		<form action="submit" >
-	        			<input type="button" value="Delete" name="deleteBook" />
+	        		<form th:action="@{/delete/book/} + ${book.id}" method="GET">
+	        			<input type="submit" value="Delete"/>
 	       			</form>
 				</td>
 	        </tr>

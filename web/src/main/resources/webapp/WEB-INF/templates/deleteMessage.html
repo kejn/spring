@@ -5,8 +5,27 @@
     <meta http-equiv="refresh" content="3;url=../../books" />
     <link rel="stylesheet" th:href="@{/static/application.css}" href="/static/application.css" />
     <title>Usunięto</title>
+    <script th:inline="javascript">
+    /*<![CDATA[*/
+    function init() {
+	    var seconds = 3;
+	    var counter = document.getElementById('timeLeft');
+   		counter.innerHTML = seconds + 's';
+		counter.style.fontStyle = 'normal';   		
+		counter.style.color = '#FF3D3D';   		
+	   	
+   		var interval = setInterval(function() {
+	   		document.getElementById('timeLeft').innerHTML = --seconds + 's';
+	   	    if (seconds <= 0) {
+	   	        clearInterval(interval);
+	   	    }
+	    	timeout();	
+	   	}, 1000);
+    }
+   	/*]]>*/
+    </script>
 </head>
-<body onload="setCounter()">
+<body onload="init()">
 	<div id="nav" class="whitebg">
 		<div class="content">
 			<div>
@@ -20,7 +39,7 @@
 	<div class="content">
 		<div class="whitebg article">
 			<p>Książka o tytule <span th:text="${title}"></span> została usunięta.</p>
-			<p>Za chwilę nastąpi przekierowanie...</p>
+			<p>Za <span id="timeLeft"></span> nastąpi przekierowanie...</p>
 		</div>
 	</div>
 </body>

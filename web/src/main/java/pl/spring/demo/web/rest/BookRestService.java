@@ -32,8 +32,9 @@ public class BookRestService {
 
     @RequestMapping(value = "/book", method = RequestMethod.PUT)
     public BookTo updateBook(@RequestBody BookTo book) {
-    	if(bookService.findBooksById(book.getId()).isEmpty())
+    	if(bookService.findBooksById(book.getId()).isEmpty()){
     		return null;
+    	}
     	return bookService.saveBook(book);
     }
 

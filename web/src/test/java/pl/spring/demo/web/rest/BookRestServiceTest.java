@@ -1,6 +1,7 @@
 package pl.spring.demo.web.rest;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -84,5 +85,26 @@ public class BookRestServiceTest {
                 .content(json.getBytes()));
         // then
         response.andExpect(status().isOk());
+    }
+
+    @Test
+    public void testShouldDeleteBook() throws Exception {
+    	// given
+    	File file = FileUtils.getFileFromClasspath("classpath:pl/spring/demo/web/json/bookToSave.json");
+    	String json = FileUtils.readFileToString(file);
+    	// when
+    	ResultActions responseSave = this.mockMvc.perform(post("/book")
+    			.accept(MediaType.APPLICATION_JSON)
+    			.contentType(MediaType.APPLICATION_JSON)
+    			.content(json.getBytes()));
+    	responseSave.andExpect(status().isOk());
+    	// then
+    	ResultActions responseDelete = this.mockMvc.perform(delete("/book")
+    			.accept(MediaType.APPLICATION_JSON)
+    			.contentType(MediaType.APPLICATION_JSON)
+    			.content(json.getBytes()));
+    	responseDelete.andExpect(status().isOk());
+    	Mockito.verify(bookService).deleteBook(Mockito.anyLong());
+    	
     }
 }

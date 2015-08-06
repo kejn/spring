@@ -27,13 +27,8 @@ public class BookController {
     @RequestMapping(value = "/delete/book/{id}", method = RequestMethod.GET)
     public String bookDelete(@PathVariable("id") String id, Map<String, Object> params) {
     	Long longId = Long.parseLong(id);
-    	final List<BookTo> allBooks = bookService.findAllBooks();
-    	for (BookTo bookTo : allBooks) {
-			if(bookTo.getId().equals(longId)) {
-				params.put("title", bookTo.getTitle());
-				break;
-			}
-		}
+    	final List<BookTo> booksMatched = bookService.findBooksById(longId);
+		params.put("title", booksMatched.get(0).getTitle());
     	bookService.deleteBook(longId);
     	return "deleteMessage";
     }

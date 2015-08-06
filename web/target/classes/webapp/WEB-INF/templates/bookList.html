@@ -6,13 +6,13 @@
     <title>Lista książek</title>
 </head>
 <body>
-	<div id="nav">
+	<div id="nav" class="whitebg">
 		<div class="content">
 			<div>
-				<a href="home">Home</a>
+				<a href="home">Strona główna</a>
 			</div>
 			<div>
-				<a href="books">Book list</a>
+				<a href="books">Lista książek</a>
 			</div>
 		</div>
 	</div>
@@ -20,17 +20,17 @@
 	    <table id="bookList">
 	    	<tr>
 	    		<th>ID</th>
-	    		<th>Book title</th>
-	    		<th>Authors</th>
-	    		<th>Action</th>
+	    		<th>Tytuł książki</th>
+	    		<th>Autorzy</th>
+	    		<th>&nbsp;</th>
 	    	</tr>
 	    	<tr th:each="book : ${books}">
 	        	<td th:text="${book.id}">id</td>
 	        	<td th:text="${book.title}">title</td>
 	        	<td th:text="${book.authors}">authors</td>
 	        	<td>
-	        		<form th:action="@{/delete/book/} + ${book.id}" method="GET">
-	        			<input type="submit" value="Delete"/>
+	        		<form th:action="@{/delete/book/} + ${book.id}" method="DELETE">
+	        			<input type="submit" value="Usuń"/>
 	       			</form>
 				</td>
 	        </tr>

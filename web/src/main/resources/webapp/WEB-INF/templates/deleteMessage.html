@@ -2,15 +2,25 @@
 <html xmlns:th="http://thymeleaf.org">
 <head lang="en">
     <meta charset="UTF-8"/>
+    <meta http-equiv="refresh" content="3;url=../../books" />
     <link rel="stylesheet" th:href="@{/static/application.css}" href="/static/application.css" />
     <title>Usunięto</title>
 </head>
-<body>
-	<div id="nav">
+<body onload="setCounter()">
+	<div id="nav" class="whitebg">
 		<div class="content">
 			<div>
-				<p>Książka o tytule <span th:text="${title}"></span> została usunięta.</p>
+				<a href="../../home">Strona główna</a>
 			</div>
+			<div>
+				<a href="../../books">Lista książek</a>
+			</div>
+		</div>
+	</div>
+	<div class="content">
+		<div class="whitebg article">
+			<p>Książka o tytule <span th:text="${title}"></span> została usunięta.</p>
+			<p>Za chwilę nastąpi przekierowanie...</p>
 		</div>
 	</div>
 </body>

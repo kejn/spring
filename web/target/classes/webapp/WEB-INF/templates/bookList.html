@@ -17,20 +17,26 @@
 		</div>
 	</div>
 	<div class="content">
-	    <table id="bookList">
+	    <table style="width:inherit; position: fixed;">
 	    	<tr>
 	    		<th>ID</th>
 	    		<th>Tytuł książki</th>
 	    		<th>Autorzy</th>
-	    		<th>&nbsp;</th>
+	    		<th>
+	    			<form>
+	        			<input type="submit" value="Usuń" style="visibility: hidden;"/>
+	       			</form>
+       			</th>
 	    	</tr>
+    	</table>
+	    <table id="bookList" style="padding-top:40px;">
 	    	<tr th:each="book : ${books}">
 	        	<td th:text="${book.id}">id</td>
 	        	<td th:text="${book.title}">title</td>
 	        	<td th:text="${book.authors}">authors</td>
 	        	<td>
-	        		<form th:action="@{/delete/book/} + ${book.id}" method="DELETE">
-	        			<input type="submit" value="Usuń"/>
+	        		<form th:action="@{/delete/book/} + ${book.id}" method="GET">
+	        			<input type="submit" value="Usuń" />
 	       			</form>
 				</td>
 	        </tr>

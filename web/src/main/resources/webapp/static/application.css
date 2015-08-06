@@ -65,6 +65,14 @@ table tr:nth-child(odd) {
 table tr:nth-child(even) {
 	background-color: ghostwhite;
 }
+
+table tr td form input[type=submit] {
+	visibility: hidden;
+}
+table tr:hover td form input[type=submit] {
+	visibility: visible;
+}
+
 table tr td,th {
 	padding: 10px;
 	border-top: 1px solid black;
@@ -76,17 +84,17 @@ table tr th {
 	background-color: deepskyblue;
 }
 
-input[type=button] {
+input[type=submit] {
 	padding: 2px 7px;
 	border: 1px solid #707070;
 }
-input[type=button]:hover {
+input[type=submit]:hover {
 	padding: 2px 7px;
 	background-color: #A6FEFF;
 	border: 1px solid #26A0DA;
 	cursor: pointer;
 }
-input[type=button]:active {
+input[type=submit]:active {
 	background-color: #A6FEFF;
 	border: 1px solid #26A0DA;
 	cursor: pointer;

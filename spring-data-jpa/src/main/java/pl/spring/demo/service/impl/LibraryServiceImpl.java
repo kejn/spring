@@ -16,7 +16,7 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Autowired
     private LibraryRepository libraryRepository;
-
+    
 	@Override
 	public List<LibraryEntity> findAllLibraries() {
 		return libraryRepository.findAll();

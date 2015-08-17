@@ -24,19 +24,20 @@ public class BookRepositoryImplTest {
 	@Test
 	public void testShouldFindAllBooksNoCriteria() {
 		// given
-		SearchCriteria searchCriteria = new SearchCriteria(null, null, null);
+		final long numberOfBooksInRepository = bookRepository.findAll().size(); 
+		final SearchCriteria searchCriteria = new SearchCriteria(null, null, null);
 		// when
 		List<BookEntity> bookEntities = bookRepository.findBySearchCriteria(searchCriteria);
 		// then
 		assertNotNull(bookEntities);
 		assertFalse(bookEntities.isEmpty());
-		assertEquals(bookRepository.findAll().size(), bookEntities.size());
+		assertEquals(numberOfBooksInRepository, bookEntities.size());
 	}
 
 	@Test
     public void testShouldFindBookCriteriaTitle() {
         // given
-        SearchCriteria searchCriteria = new SearchCriteria("Pierwsza książka", null, null);
+		final SearchCriteria searchCriteria = new SearchCriteria("Pierwsza książka", null, null);
         // when
         List<BookEntity> bookEntities = bookRepository.findBySearchCriteria(searchCriteria);
         // then
@@ -48,7 +49,7 @@ public class BookRepositoryImplTest {
 	@Test
 	public void testShouldFindBooksCriteriaAuthor() {
 		// given
-		SearchCriteria searchCriteria = new SearchCriteria(null, "Janusz", null);
+		final SearchCriteria searchCriteria = new SearchCriteria(null, "Janusz", null);
 		// when
 		List<BookEntity> bookEntities = bookRepository.findBySearchCriteria(searchCriteria);
 		// then
@@ -60,7 +61,7 @@ public class BookRepositoryImplTest {
 	@Test
 	public void testShouldFindBookCriteriaLibrary() {
 		// given
-		SearchCriteria searchCriteria = new SearchCriteria(null, null, "Zwei");
+		final SearchCriteria searchCriteria = new SearchCriteria(null, null, "Zwei");
 		// when
 		List<BookEntity> bookEntities = bookRepository.findBySearchCriteria(searchCriteria);
 		// then

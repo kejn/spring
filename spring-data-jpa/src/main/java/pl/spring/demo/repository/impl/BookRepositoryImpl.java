@@ -10,7 +10,6 @@ import com.mysema.query.jpa.impl.JPAQuery;
 
 import pl.spring.demo.dao.BookSearchCriteria;
 import pl.spring.demo.entity.BookEntity;
-import pl.spring.demo.entity.QAuthorEntity;
 import pl.spring.demo.entity.QBookEntity;
 import pl.spring.demo.to.SearchCriteria;
 

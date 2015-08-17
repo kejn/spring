@@ -14,6 +14,9 @@
 			<div>
 				<a href="books">Lista książek</a>
 			</div>
+			<div>
+				<a href="libraries">Lista bibliotek</a>
+			</div>
 		</div>
 	</div>
 	<div class="content">
@@ -29,7 +32,7 @@
 	        	<td th:text="${book.title}">title</td>
 	        	<td th:text="${book.authors}">authors</td>
 	        	<td>
-	        		<form th:action="@{/delete/book/} + ${book.id}" method="GET">
+	        		<form><!--  th:action="@{/delete/book/} + ${book.id}" method="GET"> -->
 	        			<input type="submit" value="Usuń" />
 	       			</form>
 				</td>

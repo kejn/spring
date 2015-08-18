@@ -51,7 +51,7 @@ public class LibraryRepositoryTest {
 	@Test
 	public void testShouldDeleteLibrary() {
 		// given
-		final long libraryId = 3L;
+		final long libraryId = 11L;
 		libraryRepository.save(new LibraryEntity(libraryId, "czecia"));
 		final long numberOfLibraries = libraryRepository.count();
 		// when
@@ -63,14 +63,14 @@ public class LibraryRepositoryTest {
 	@Test
 	public void testShouldDeleteAllBooksInLibraryWhenItIsDeleted() {
 		// given
-		final long libraryId = 3L;
+		final long libraryId = 11L;
 		LibraryEntity libraryEntity = new LibraryEntity(libraryId, "czecia");
 		libraryRepository.save(libraryEntity);
 
-		BookEntity book = new BookEntity(9L, "asd");
+		BookEntity book = new BookEntity(90L, "asd");
 		book.setLibrary(libraryEntity);
 		bookRepository.save(book);
-		book.setId(10L);
+		book.setId(100L);
 		bookRepository.save(book);
 		
 		long noOfBooksBefore = bookRepository.count();

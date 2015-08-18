@@ -11,6 +11,7 @@ C:\Users\kniemczy\git\spring\spring-data-jpa\src\main\java\pl\spring\demo\servic
 C:\Users\kniemczy\git\spring\spring-data-jpa\src\main\java\pl\spring\demo\dao\Dao.java
 C:\Users\kniemczy\git\spring\spring-data-jpa\src\main\java\pl\spring\demo\mapper\BookMapper.java
 C:\Users\kniemczy\git\spring\spring-data-jpa\src\main\java\pl\spring\demo\service\BookService.java
+C:\Users\kniemczy\git\spring\spring-data-jpa\src\main\java\pl\spring\demo\service\impl\BookSearchServiceImpl.java
 C:\Users\kniemczy\git\spring\spring-data-jpa\src\main\java\pl\spring\demo\service\LibraryService.java
 C:\Users\kniemczy\git\spring\spring-data-jpa\src\main\java\pl\spring\demo\dao\LibraryDao.java
 C:\Users\kniemczy\git\spring\spring-data-jpa\src\main\java\pl\spring\demo\repository\impl\BookRepositoryImpl.java

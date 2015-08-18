@@ -1,6 +1,8 @@
 package pl.spring.demo.repository.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
@@ -68,5 +70,57 @@ public class BookRepositoryImplTest {
 		assertNotNull(bookEntities);
 		assertFalse(bookEntities.isEmpty());
 		assertEquals("Druga książka", bookEntities.get(0).getTitle());
+	}
+
+	@Test
+	public void testShouldFindBookCriteriaTitleAndLibrary() {
+		// given
+		final SearchCriteria searchCriteria = new SearchCriteria("cz", null, "zwei");
+		// when
+		List<BookEntity> bookEntities = bookRepository.findBySearchCriteria(searchCriteria);
+		// then
+		assertNotNull(bookEntities);
+		assertFalse(bookEntities.isEmpty());
+		assertEquals("Czwarta książka", bookEntities.get(0).getTitle());
+		assertEquals("Zweite bibliotheka", bookEntities.get(0).getLibrary().getName());
+	}
+
+	@Test
+	public void testShouldFindBookCriteriaTitleAndAuthor() {
+		// given
+		final SearchCriteria searchCriteria = new SearchCriteria("dzi", "Kowalski", null);
+		// when
+		List<BookEntity> bookEntities = bookRepository.findBySearchCriteria(searchCriteria);
+		// then
+		assertNotNull(bookEntities);
+		assertFalse(bookEntities.isEmpty());
+		assertEquals("Dziewiąta książka", bookEntities.get(0).getTitle());
+		assertEquals("Zweite bibliotheka", bookEntities.get(0).getLibrary().getName());
+	}
+	
+	@Test
+	public void testShouldFindBookCriteriaAuthorAndLibrary() {
+		// given
+		final SearchCriteria searchCriteria = new SearchCriteria(null, "Nieważne", "four");
+		// when
+		List<BookEntity> bookEntities = bookRepository.findBySearchCriteria(searchCriteria);
+		// then
+		assertNotNull(bookEntities);
+		assertFalse(bookEntities.isEmpty());
+		assertEquals("Ósma książka", bookEntities.get(0).getTitle());
+		assertEquals("Fourth lib", bookEntities.get(0).getLibrary().getName());
+	}
+	
+	@Test
+	public void testShouldFindBookCriteriaTitleAndAuthorAndLibrary() {
+		// given
+		final SearchCriteria searchCriteria = new SearchCriteria("pi", "jan", "oui");
+		// when
+		List<BookEntity> bookEntities = bookRepository.findBySearchCriteria(searchCriteria);
+		// then
+		assertNotNull(bookEntities);
+		assertFalse(bookEntities.isEmpty());
+		assertEquals("Pierwsza książka", bookEntities.get(0).getTitle());
+		assertEquals("Oui bibliotheka", bookEntities.get(0).getLibrary().getName());
 	}
 }

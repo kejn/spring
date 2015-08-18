@@ -21,7 +21,7 @@ public class BookEntity implements Serializable {
 					@JoinColumn(name = "AUTHOR_ID", nullable = false, updatable = false) })
 	private Set<AuthorEntity> authors = new HashSet<>();
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH, optional = false)
+	@ManyToOne(cascade = CascadeType.DETACH, optional = false)
 	@JoinColumn(name = "LIBRARY_ID", nullable = false, referencedColumnName = "id")
 	private LibraryEntity library;
 

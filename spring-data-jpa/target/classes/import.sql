@@ -12,6 +12,7 @@ insert into book (id, title, library_id) values (6, 'Szósta książka',4);
 insert into book (id, title, library_id) values (7, 'Siódma książka',2);
 insert into book (id, title, library_id) values (8, 'Ósma książka',4);
 insert into book (id, title, library_id) values (9, 'Dziewiąta książka',3);
+insert into book (id, title, library_id) values (10, 'Dziewiąta książka',2);
 
 insert into author (id, first_name, last_name) values (4, 'Łukasz', 'Nieważne');
 insert into author (id, first_name, last_name) values (5, 'Paweł', 'Stefan');
@@ -29,3 +30,4 @@ insert into book_author(book_id, author_id) values (6, 6);
 insert into book_author(book_id, author_id) values (7, 4);
 insert into book_author(book_id, author_id) values (8, 4);
 insert into book_author(book_id, author_id) values (9, 6);
+insert into book_author(book_id, author_id) values (10, 7);

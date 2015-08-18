@@ -14,7 +14,7 @@ public class LibraryServiceTest {
 
 	@Autowired
 	private LibraryService libraryService;
-
+	
 	@Test
 	public void testShouldDeleteLibrary() {
 		// given

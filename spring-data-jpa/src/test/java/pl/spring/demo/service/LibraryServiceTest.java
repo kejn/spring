@@ -34,7 +34,7 @@ public class LibraryServiceTest {
 	@Test
 	public void testShouldDeleteAllBooksInLibraryWhenItIsDeleted() {
 		// given
-		final long libraryId = 3L;
+		final long libraryId = 3;
 		
 		long noOfBooksBefore = bookService.findAllBooks().size();
 		// when

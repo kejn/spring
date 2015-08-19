@@ -1,41 +1,35 @@
 package pl.spring.demo.mapper;
 
 import java.util.Collection;
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
-import pl.spring.demo.entity.BookEntity;
 import pl.spring.demo.entity.LibraryEntity;
-import pl.spring.demo.to.BookTo;
 import pl.spring.demo.to.LibraryTo;
 
 public class LibraryMapper {
 
 	public static LibraryTo map(LibraryEntity libraryEntity) {
 		if (libraryEntity != null) {
-			return new LibraryTo(libraryEntity.getId(), libraryEntity.getName(), map2BooksTo(libraryEntity.getBooks()));
+			return new LibraryTo(libraryEntity.getId(), libraryEntity.getName(),
+					BookMapper.map2To(libraryEntity.getBooks()));
 		}
 		return null;
 	}
 
 	public static LibraryEntity map(LibraryTo libraryTo) {
 		if (libraryTo != null) {
-			return new LibraryEntity(libraryTo.getId(), libraryTo.getName(), map2BooksEntity(libraryTo.getBooks()));
+			return new LibraryEntity(libraryTo.getId(), libraryTo.getName(),
+					BookMapper.map2Entity(libraryTo.getBooks()));
 		}
 		return null;
 	}
 
-	private static Set<BookEntity> map2BooksEntity(Collection<BookTo> books) {
-		if (!books.isEmpty()) {
-			return books.stream().map(bookTo -> BookMapper.map(bookTo)).collect(Collectors.toSet());
-		}
-		return null;
+	public static List<LibraryEntity> map2Entity(Collection<LibraryTo> libraries) {
+		return libraries.stream().map(libraryTo -> LibraryMapper.map(libraryTo)).collect(Collectors.toList());
 	}
 
-	private static Set<BookTo> map2BooksTo(Collection<BookEntity> books) {
-		if (!books.isEmpty()) {
-			return books.stream().map(bookEntity -> BookMapper.map(bookEntity)).collect(Collectors.toSet());
-		}
-		return null;
+	public static List<LibraryTo> map2To(Collection<LibraryEntity> library) {
+		return library.stream().map(libraryEntity -> LibraryMapper.map(libraryEntity)).collect(Collectors.toList());
 	}
 }

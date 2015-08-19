@@ -66,9 +66,8 @@ public class LibraryRepositoryTest {
 		final long libraryId = 11L;
 		LibraryEntity libraryEntity = new LibraryEntity(libraryId, "czecia");
 		libraryRepository.save(libraryEntity);
-
-		BookEntity book = new BookEntity(90L, "asd");
-		book.setLibrary(libraryEntity);
+		
+		BookEntity book = new BookEntity(90L, "asd", libraryEntity);
 		bookRepository.save(book);
 		book.setId(100L);
 		bookRepository.save(book);
@@ -80,5 +79,4 @@ public class LibraryRepositoryTest {
 		// then
 		assertTrue(noOfBooksBefore > noOfBooksAfter);
 	}
-
 }

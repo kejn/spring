@@ -10,6 +10,11 @@ public class LibraryTo {
     public LibraryTo() {
     }
 
+    public LibraryTo(Long id, String name) {
+    	this.id = id;
+    	this.name = name;
+    }
+
     public LibraryTo(Long id, String name, Set<BookTo> books) {
         this.id = id;
         this.name = name;

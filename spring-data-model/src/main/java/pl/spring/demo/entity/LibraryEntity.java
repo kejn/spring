@@ -15,7 +15,7 @@ public class LibraryEntity {
 	@Column(nullable = false, length = 50)
     private String name;
 	
-	@OneToMany(cascade = CascadeType.REMOVE, mappedBy="library")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="library")
 	private Set<BookEntity> books = new HashSet<>();
 	
 	// 4 hibernate

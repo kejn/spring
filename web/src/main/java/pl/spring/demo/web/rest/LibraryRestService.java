@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import pl.spring.demo.entity.LibraryEntity;
 import pl.spring.demo.service.LibraryService;
-import pl.spring.demo.to.BookTo;
+import pl.spring.demo.to.LibraryTo;
 
 @Controller
 @ResponseBody
@@ -19,12 +18,12 @@ public class LibraryRestService {
     private LibraryService libraryService;
 
     @RequestMapping(value = "/library", method = RequestMethod.POST)
-    public LibraryEntity saveLibrary(@RequestBody LibraryEntity library) {
+    public LibraryTo saveLibrary(@RequestBody LibraryTo library) {
         return libraryService.saveLibrary(library);
     }
 
     @RequestMapping(value = "/library", method = RequestMethod.DELETE)
-    public void deleteBook(@RequestBody BookTo library) {
+    public void deleteLibrary(@RequestBody LibraryTo library) {
     	libraryService.deleteLibrary(library.getId());
     }
 }

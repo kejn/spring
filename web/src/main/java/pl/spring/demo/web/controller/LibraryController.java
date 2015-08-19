@@ -8,8 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import pl.spring.demo.entity.LibraryEntity;
 import pl.spring.demo.service.LibraryService;
+import pl.spring.demo.to.LibraryTo;
 
 @Controller
 public class LibraryController {
@@ -18,7 +18,7 @@ public class LibraryController {
 
     @RequestMapping(value = "/libraries", method = RequestMethod.GET)
     public String bookList(Map<String, Object> params) {
-        final List<LibraryEntity> allLibraries = libraryService.findAllLibraries();
+        final List<LibraryTo> allLibraries = libraryService.findAllLibraries();
         params.put("libraries", allLibraries);
         return "libraryList";
     }

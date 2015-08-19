@@ -15,7 +15,9 @@ public class BookEntity implements Serializable {
 	@Column(nullable = false, length = 50)
 	private String title;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL) // Error on REMOVE... ? 
+	// was error on CascadeType.ALL (so also REMOVE) because the same authors
+	// are assigned to different books in different libraries in database
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinTable(name = "BOOK_AUTHOR", joinColumns = {
 			@JoinColumn(name = "BOOK_ID", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "AUTHOR_ID", nullable = false, updatable = false) })

@@ -16,7 +16,7 @@ public class LibraryEntity {
     private String name;
 	
 	@OneToMany(cascade = CascadeType.REMOVE, mappedBy="library")
-	private Set<BookEntity> bookSet = new HashSet<>();
+	private Set<BookEntity> books = new HashSet<>();
 	
 	// 4 hibernate
 	protected LibraryEntity() {
@@ -25,6 +25,12 @@ public class LibraryEntity {
 	public LibraryEntity(Long id, String name) {
 		this.id = id;
 		this.name = name;
+	}
+
+	public LibraryEntity(Long id, String name, Set<BookEntity> books) {
+		this.id = id;
+		this.name = name;
+		this.books = books;
 	}
 	
 	public Long getId() {
@@ -44,10 +50,10 @@ public class LibraryEntity {
 	}
 
 	public Set<BookEntity> getBooks() {
-		return bookSet;
+		return books;
 	}
 
 	public void setBooks(Set<BookEntity> bookSet) {
-		this.bookSet = bookSet;
+		this.books = bookSet;
 	}
 }

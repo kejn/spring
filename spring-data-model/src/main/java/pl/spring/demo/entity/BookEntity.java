@@ -21,7 +21,7 @@ public class BookEntity implements Serializable {
 					@JoinColumn(name = "AUTHOR_ID", nullable = false, updatable = false) })
 	private Set<AuthorEntity> authors = new HashSet<>();
 
-	@ManyToOne(cascade = CascadeType.DETACH, optional = false)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
 	@JoinColumn(name = "LIBRARY_ID", nullable = false, referencedColumnName = "id")
 	private LibraryEntity library;
 
@@ -32,6 +32,12 @@ public class BookEntity implements Serializable {
 	public BookEntity(Long id, String title) {
 		this.id = id;
 		this.title = title;
+	}
+
+	public BookEntity(Long id, String title, LibraryEntity library) {
+		this.id = id;
+		this.title = title;
+		this.library = library;
 	}
 
 	public Long getId() {

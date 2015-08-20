@@ -46,7 +46,7 @@ public class AuthorTo {
 	@Override
 	public boolean equals(Object object) {
 		AuthorTo author = (AuthorTo) object;
-		if(toString().equals(author.toString())) {
+		if(toString().equals(author.toString()) && id.equals(author.id)) {
 			return true;
 		}
 		return false;

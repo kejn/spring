@@ -50,8 +50,8 @@ public class BookRestServiceTest {
     public void testShouldCallBookService() throws Exception {
         // given
         final String bookTitle = "testTitle";
-        final AuthorTo author1 = new AuthorTo(1L, "Author1", "");
-        final AuthorTo author2 = new AuthorTo(2L, "Author2", "");
+        final AuthorTo author1 = new AuthorTo(1L, "Author", "1");
+        final AuthorTo author2 = new AuthorTo(2L, "Author", "2");
 
         final BookTo bookTo1 = new BookTo(1L, bookTitle, new HashSet<AuthorTo>(Arrays.asList(author1)));
         final BookTo bookTo2 = new BookTo(2L, bookTitle, new HashSet<AuthorTo>(Arrays.asList(author2)));
@@ -69,11 +69,14 @@ public class BookRestServiceTest {
 
                 .andExpect(jsonPath("[0].id").value(bookTo1.getId().intValue()))
                 .andExpect(jsonPath("[0].title").value(bookTo1.getTitle()))
-                .andExpect(jsonPath("[0].authors").value(bookTo1.getAuthors()))
+                .andExpect(jsonPath("[0].authors[0].firstName").value(bookTo1.getAuthors().iterator().next().getFirstName()))
+                .andExpect(jsonPath("[0].authors[0].lastName").value(bookTo1.getAuthors().iterator().next().getLastName()))
+                
 
                 .andExpect(jsonPath("[1].id").value(bookTo2.getId().intValue()))
                 .andExpect(jsonPath("[1].title").value(bookTo2.getTitle()))
-                .andExpect(jsonPath("[1].authors").value(bookTo2.getAuthors()));
+                .andExpect(jsonPath("[1].authors[0].firstName").value(bookTo2.getAuthors().iterator().next().getFirstName()))
+                .andExpect(jsonPath("[1].authors[0].lastName").value(bookTo2.getAuthors().iterator().next().getLastName()));
     }
 
     @Test

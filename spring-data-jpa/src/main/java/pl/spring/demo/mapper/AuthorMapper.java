@@ -29,4 +29,5 @@ public class AuthorMapper {
     public static Set<AuthorEntity> map2Entity(Set<AuthorTo> authorEntities) {
         return authorEntities.stream().map(AuthorMapper::map).collect(Collectors.toSet());
     }
+    
 }

@@ -37,4 +37,18 @@ public class AuthorTo {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+	
+	@Override
+	public String toString() {
+		return firstName + " " + lastName;
+	}
+	
+	@Override
+	public boolean equals(Object object) {
+		AuthorTo author = (AuthorTo) object;
+		if(toString().equals(author.toString())) {
+			return true;
+		}
+		return false;
+	}
 }

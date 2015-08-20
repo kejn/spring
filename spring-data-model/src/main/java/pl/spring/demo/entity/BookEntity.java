@@ -26,19 +26,15 @@ public class BookEntity implements Serializable {
 	@Column(nullable = false, length = 50)
 	private String title;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
- 	@JoinTable(name = "BOOK_AUTHOR", joinColumns = {
- 			@JoinColumn(name = "BOOK_ID", nullable = false, updatable = false) }, inverseJoinColumns = {
- 					@JoinColumn(name = "AUTHOR_ID", nullable = false, updatable = false) })
- 	private Set<AuthorEntity> authors = new HashSet<>();
-	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+			CascadeType.REFRESH })
+	@JoinTable(name = "BOOK_AUTHOR", joinColumns = {
+			@JoinColumn(name = "BOOK_ID", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "AUTHOR_ID", nullable = false, updatable = false) })
+	private Set<AuthorEntity> authors = new HashSet<>();
+
 	// for hibernate
 	protected BookEntity() {
-	}
-
-	public BookEntity(Long id, String title) {
-		this.id = id;
-		this.title = title;
 	}
 
 	public BookEntity(Long id, String title, Set<AuthorEntity> authors) {

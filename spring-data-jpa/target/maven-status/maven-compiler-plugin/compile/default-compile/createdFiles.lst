@@ -1,3 +1,4 @@
+pl\spring\demo\mapper\AuthorMapper.class
 pl\spring\demo\mapper\BookMapper.class
 pl\spring\demo\service\impl\BookServiceImpl.class
 pl\spring\demo\service\BookService.class

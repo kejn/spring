@@ -1,8 +1,23 @@
 package pl.spring.demo.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import pl.spring.demo.to.AuthorTo;
+
+@Entity
+@Table(name = "AUTHOR")
 public class AuthorEntity {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@Column(nullable = false, length = 50)
 	private String firstName;
+	@Column(nullable = false, length = 50)
 	private String lastName;
 	
 	public AuthorEntity(){
@@ -37,5 +52,18 @@ public class AuthorEntity {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
+	
+	@Override
+	public String toString() {
+		return firstName + " " + lastName;
+	}
+	
+	@Override
+	public boolean equals(Object object) {
+		AuthorTo author = (AuthorTo) object;
+		if(toString().equals(author.toString())) {
+			return true;
+		}
+		return false;
+	}
 }

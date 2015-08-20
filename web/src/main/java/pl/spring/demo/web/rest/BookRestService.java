@@ -8,7 +8,7 @@ import pl.spring.demo.to.BookTo;
 
 import java.util.List;
 
-@RestController(value = "/rest")
+@RestController
 public class BookRestService {
 
     @Autowired

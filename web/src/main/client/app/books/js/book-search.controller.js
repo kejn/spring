@@ -1,4 +1,4 @@
-angular.module('app.books').controller('BookSearchController', function ($scope, $window, $location, bookService, Flash) {
+angular.module('app.books').controller('BookSearchController', function ($scope, $window, $location, bookService, Flash, $modal) {
     'use strict';
 
     $scope.books = [];
@@ -30,7 +30,11 @@ angular.module('app.books').controller('BookSearchController', function ($scope,
     };
 
     $scope.addBook = function () {
-        $location.url('/books/add-book');
+        $modal.open({
+            templateUrl: 'books/html/book-modal.html',
+            controller: 'BookModalController',
+            size: 'lg'
+        });
     };
 
 });

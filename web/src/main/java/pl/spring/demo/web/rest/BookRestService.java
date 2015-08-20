@@ -9,6 +9,7 @@ import pl.spring.demo.to.BookTo;
 import java.util.List;
 
 @RestController
+@RequestMapping(value="/books")
 public class BookRestService {
 
     @Autowired

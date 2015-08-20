@@ -1,5 +1,14 @@
 package pl.spring.demo.web.rest;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.io.File;
+import java.util.Arrays;
+import java.util.HashSet;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,17 +22,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+
 import pl.spring.demo.service.BookService;
+import pl.spring.demo.to.AuthorTo;
 import pl.spring.demo.to.BookTo;
 import pl.spring.demo.web.utils.FileUtils;
-
-import java.io.File;
-import java.util.Arrays;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
@@ -47,9 +50,11 @@ public class BookRestServiceTest {
     public void testShouldCallBookService() throws Exception {
         // given
         final String bookTitle = "testTitle";
+        final AuthorTo author1 = new AuthorTo(1L, "Author1", "");
+        final AuthorTo author2 = new AuthorTo(2L, "Author2", "");
 
-        final BookTo bookTo1 = new BookTo(1L, bookTitle, "Author1");
-        final BookTo bookTo2 = new BookTo(2L, bookTitle, "Author2");
+        final BookTo bookTo1 = new BookTo(1L, bookTitle, new HashSet<AuthorTo>(Arrays.asList(author1)));
+        final BookTo bookTo2 = new BookTo(2L, bookTitle, new HashSet<AuthorTo>(Arrays.asList(author2)));
 
         Mockito.when(bookService.findBooksByTitle(bookTitle)).thenReturn(Arrays.asList(bookTo1, bookTo2));
 

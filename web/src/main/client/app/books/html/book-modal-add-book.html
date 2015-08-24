@@ -1,7 +1,7 @@
 <div>
     <form novalidate>
         <div class="modal-header">
-            <h3 class="modal-title">Dodaj książkę</h3>
+            <h3 class="modal-title">{{ modalTitle }}</h3>
         </div>
         <div class="modal-body">
 			<form>
@@ -18,7 +18,7 @@
             </form>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-success" ng-disabled="!authorsAreValid() || !!!bookTitle" ng-click="saveBook()">Zapisz</button>
+            <button class="btn btn-success" ng-disabled="!authorsAreValid() || !!!bookTitle" ng-click="saveBook()">{{ buttonText }}</button>
             <button class="btn btn-warning" ng-click="$dismiss()">Anuluj</button>
         </div>
     </form>

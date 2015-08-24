@@ -1,24 +1,21 @@
-angular.module('app.books').controller('BookModalAddBookController', function ($scope, $modal, $modalInstance, bookTitle) {
+angular.module('app.books').controller('BookModalAddBookController', function ($scope, $modal, $modalInstance, book, modalTitle, buttonText) {
     'use strict';
     
-    $scope.bookTitle = bookTitle;
-    $scope.authors = [];
+    $scope.modalTitle = modalTitle;
+    $scope.buttonText = buttonText;
     
-    function AuthorTo(firstName, lastName) {
-    	this.id = null;
-    	this.firstName = firstName;
-    	this.lastName = lastName;
-    }
-
-    function BookTo(title, authors) {
-    	this.id = null;
+    $scope.bookTitle = book.title;
+    $scope.bookId = book.id;
+    $scope.authors = book.authors;
+    
+    function BookTo(id, title, authors) {
+    	this.id = id;
     	this.title = title;
     	this.authors = authors;
     }
     
     $scope.saveBook = function () {
-    	var bookJSON = JSON.stringify(new BookTo($scope.bookTitle, $scope.authors));
-    	console.log("bookToJSON: " + bookJSON);
+    	var bookJSON = JSON.stringify(new BookTo($scope.bookId, $scope.bookTitle, $scope.authors));
     	$modalInstance.close(bookJSON);
     };
     
@@ -35,10 +32,10 @@ angular.module('app.books').controller('BookModalAddBookController', function ($
     
     $scope.removeAuthor = function(index) {
     	$scope.authors.splice(index,1);
-    }
+    };
     
     $scope.authorsAreValid = function() {
-    	if($scope.authors.length == 0) {
+    	if($scope.authors.length === 0) {
     		return false;
     	}
     	for(var i = 0; i < $scope.authors.length; ++i) {

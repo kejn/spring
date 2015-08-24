@@ -26,7 +26,8 @@ angular.module('app.books').controller('BookSearchController', function ($scope,
     };
 
     $scope.deleteBook = function (bookId) {
-        bookService.deleteBook(bookId).then(function () {
+    	// dodać "Are you sure?" OK Cancel
+    	bookService.deleteBook(bookId).then(function () {
             var bookTitle = removeBookById(bookId);
             Flash.create('success', 'Książka "' + bookTitle + '" została usunięta.', 'custom-class');
         });
@@ -38,25 +39,52 @@ angular.module('app.books').controller('BookSearchController', function ($scope,
             controller: 'BookModalAddBookController',
             size: 'lg',
             resolve: {
-            	bookTitle: function () {
-                	return $scope.bookTitle;
+            	book: function () {
+                	return {id: null, title: $scope.bookTitle, authors: []};
             	},
-        		books: function() {
-        			return $scope.books;
-        		}
+    			modalTitle : function () {
+    				return 'Dodaj nową książkę';
+    			},
+    			buttonText : function () {
+    				return 'Dodaj książkę';
+    			}
             }
         });
         modalInstance.result.then(function (bookJSON) {
-        	var book = bookService.saveBook(bookJSON);
-        	book.then(function (bookTo) {
-        		angular.copy(bookTo.data, book);
-        		$scope.books.push(book);
-        		Flash.create('success', 'Książka "' + book.title + '" została dodana.', 'custom-class');
-        	},
-        	function() {
+        	bookService.saveBook(bookJSON).then(function (bookTo) {
+        		$scope.books.push(bookTo.data);
+        		Flash.create('success', 'Książka "' + bookTo.data.title + '" została dodana.', 'custom-class');
+        	}, function() {
         		Flash.create('danger', 'Nie udało się dodać książki.', 'custom-class');
         	});
         });
+    };
+
+    $scope.updateBook = function (index) {
+    	var modalInstance = $modal.open({
+    		templateUrl: 'books/html/book-modal-add-book.html',
+    		controller: 'BookModalAddBookController',
+    		size: 'lg',
+    		resolve: {
+    			book: function () {
+    				return angular.copy($scope.books[index]);
+    			},
+    			modalTitle : function () {
+    				return 'Edytuj książkę';
+    			},
+    			buttonText : function () {
+    				return 'Zapisz zmiany';
+    			}
+    		}
+    	});
+    	modalInstance.result.then(function (bookJSON) {
+    		bookService.saveBook(bookJSON).then(function (bookTo) {
+    			angular.copy(bookTo.data, $scope.books[index]);
+    			Flash.create('success', 'Książka "' + bookTo.data.title + '" została zaktualizowana.', 'custom-class');
+    		}, function() {
+    			Flash.create('danger', 'Nie udało się zaktualizować książki.', 'custom-class');
+    		});
+    	});
     };
 
 });

@@ -7,7 +7,7 @@
     <p>Podaj tytuł książki: <span>{{ bookTitle }}</span></p>
     <input type="text" ng-model="bookTitle" />
     <button ng-click="search()">Szukaj</button>
-    <button ng-click="addBook()">Dodaj książkę</button>
+    <button ng-click="addOrUpdateBook()">Dodaj książkę</button>
 
     <table>
         <tr>
@@ -28,7 +28,7 @@
                 <button ng-click="deleteBook(book.id)">Usuń</button>
             </td>
             <td>
-                <button ng-click="updateBook($index)">Edytuj</button>
+                <button ng-click="addOrUpdateBook($index)">Edytuj</button>
             </td>
         </tr>
     </table>

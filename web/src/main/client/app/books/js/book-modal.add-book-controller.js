@@ -1,12 +1,12 @@
-angular.module('app.books').controller('BookModalAddBookController', function ($scope, $modal, $modalInstance, book, modalTitle, buttonText) {
+angular.module('app.books').controller('BookModalAddBookController', function ($scope, $modal, $modalInstance, properties) {
     'use strict';
     
-    $scope.modalTitle = modalTitle;
-    $scope.buttonText = buttonText;
+    $scope.modalTitle = properties.modalTitle;
+    $scope.buttonText = properties.buttonText;
     
-    $scope.bookTitle = book.title;
-    $scope.bookId = book.id;
-    $scope.authors = book.authors;
+    $scope.bookTitle = properties.book.title;
+    $scope.bookId = properties.book.id;
+    $scope.authors = properties.book.authors;
     
     function BookTo(id, title, authors) {
     	this.id = id;
@@ -15,8 +15,7 @@ angular.module('app.books').controller('BookModalAddBookController', function ($
     }
     
     $scope.saveBook = function () {
-    	var bookJSON = JSON.stringify(new BookTo($scope.bookId, $scope.bookTitle, $scope.authors));
-    	$modalInstance.close(bookJSON);
+    	$modalInstance.close(new BookTo($scope.bookId, $scope.bookTitle, $scope.authors));
     };
     
     $scope.addAuthor = function () {

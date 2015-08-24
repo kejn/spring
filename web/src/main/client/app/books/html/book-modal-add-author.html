@@ -5,12 +5,12 @@
         </div>
         <div class="modal-body">
 			<form>
-            	<input class="spanHalf" type="text" ng-model="firstName" placeholder="Imię" required/>
-            	<input class="spanHalf" type="text" ng-model="lastName" placeholder="Nazwisko" required/>
+            	<input class="form-control" type="text" ng-model="firstName" placeholder="Imię" required/>
+            	<input class="form-control" type="text" ng-model="lastName" placeholder="Nazwisko" required/>
             </form>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-success" ng-disabled="!(!!firstName && !!lastName && !!bookTitle)" ng-click="saveBook();$dismiss()">OK</button>
+            <button class="btn btn-success" ng-disabled="!(!!firstName && !!lastName)" ng-click="addAuthor()">OK</button>
             <button class="btn btn-warning" ng-click="$dismiss()">Anuluj</button>
         </div>
     </form>

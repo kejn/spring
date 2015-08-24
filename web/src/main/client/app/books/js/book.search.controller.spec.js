@@ -34,7 +34,22 @@ describe('book controller', function () {
         $scope.$digest();
         // then
         expect(bookService.deleteBook).toHaveBeenCalledWith(bookId);
-        expect(Flash.create).toHaveBeenCalledWith('success', 'Książka została usunięta.', 'custom-class');
+        expect(Flash.create).toHaveBeenCalledWith('success', 'Książka "test" została usunięta.', 'custom-class');
         expect($scope.books.length).toBe(0);
     }));
+    
+    // wrzuć to gdzie indziej
+//    it('add book is defined', inject(function ($controller) {
+//    	// when
+//    	$controller('BookModalAddBookController', {$scope: $scope});
+//    	// then
+//    	expect($scope.search).toBeDefined();
+//    }));
+//
+//    it('add author is defined', inject(function ($controller) {
+//        // when
+//        $controller('BookModalAddAuthorController', {$scope: $scope});
+//        // then
+//        expect($scope.search).toBeDefined();
+//    }));
 });

@@ -1,0 +1,25 @@
+<div>
+    <form novalidate>
+        <div class="modal-header">
+            <h3 class="modal-title">Dodaj książkę</h3>
+        </div>
+        <div class="modal-body">
+			<form>
+	            <h1><input class="form-control" type="text" ng-value="bookTitle" ng-model="bookTitle" placeholder="Tytuł"/></h1>
+	            <p>Podaj autorów:</p>
+	            <p ng-repeat="author in authors">
+	            	<input class="form-control" type="text" ng-model="authors[$index].firstName" placeholder="Imię" required/>
+	            	<input class="form-control" type="text" ng-model="authors[$index].lastName" placeholder="Nazwisko" required/>
+	            	<input class="btn btn-danger spanButton" type="button" ng-click="removeAuthor($index)" value="Usuń tego autora" />
+	            </p>
+	            <p>
+	            	<input class="btn btn-primary" type="button" ng-click="addAuthor()" value="Dodaj nowego autora" />
+	            </p>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-success" ng-disabled="!authorsAreValid() || !!!bookTitle" ng-click="saveBook()">Zapisz</button>
+            <button class="btn btn-warning" ng-click="$dismiss()">Anuluj</button>
+        </div>
+    </form>
+</div>

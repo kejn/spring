@@ -1,4 +1,4 @@
-angular.module('app.books').controller('BookSearchController', function ($scope, $window, $location, bookService, Flash, $modal) {
+angular.module('app.books').controller('BookSearchController', function ($scope, $window, $location, $modal, bookService, Flash) {
     'use strict';
 
     $scope.books = [];
@@ -33,9 +33,9 @@ angular.module('app.books').controller('BookSearchController', function ($scope,
     };
 
     $scope.addBook = function () {
-        $modal.open({
-            templateUrl: 'books/html/book-modal-add.html',
-            controller: 'BookModalAddController',
+        var modalInstance = $modal.open({
+            templateUrl: 'books/html/book-modal-add-book.html',
+            controller: 'BookModalAddBookController',
             size: 'lg',
             resolve: {
             	bookTitle: function () {
@@ -45,6 +45,17 @@ angular.module('app.books').controller('BookSearchController', function ($scope,
         			return $scope.books;
         		}
             }
+        });
+        modalInstance.result.then(function (bookJSON) {
+        	var book = bookService.saveBook(bookJSON);
+        	book.then(function (bookTo) {
+        		angular.copy(bookTo.data, book);
+        		$scope.books.push(book);
+        		Flash.create('success', 'Książka "' + book.title + '" została dodana.', 'custom-class');
+        	},
+        	function() {
+        		Flash.create('danger', 'Nie udało się dodać książki.', 'custom-class');
+        	});
         });
     };
 

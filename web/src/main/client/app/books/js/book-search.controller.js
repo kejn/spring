@@ -4,6 +4,19 @@ angular.module('app.books').controller('BookSearchController', function ($scope,
     $scope.books = [];
     $scope.gridOptions = { data: 'books' };
     $scope.bookTitle = '';
+    
+    $scope.BookTo = function (id, title, authors) {
+    	this.id = id;
+    	this.title = title;
+    	this.authors = authors;
+    };
+    
+    function ModalProperties(book, modalTitle, buttonText, messageSuffix) {
+    	this.book = book;
+		this.modalTitle = modalTitle;
+		this.buttonText = buttonText;
+		this.messageSuffix = messageSuffix;
+    }
 
     var removeBookById = function (bookId) {
     	var title = '';
@@ -33,33 +46,25 @@ angular.module('app.books').controller('BookSearchController', function ($scope,
         });
     };
 
-    function ModalProperties(book, modalTitle, buttonText, messageSuffix) {
-    	this.book = book;
-		this.modalTitle = modalTitle;
-		this.buttonText = buttonText;
-		this.messageSuffix = messageSuffix;
-    }
-    
     $scope.addOrUpdateBook = function (index) {
     	var newBook = (typeof index === 'undefined');
     	var properties;
     	if (newBook) {
-    		properties = new ModalProperties(
-    				{id: null, title: $scope.bookTitle, authors: []},
-    				'Dodaj nową książkę',
-    				'Dodaj książkę',
-    				'dodana.');
+    		properties = new ModalProperties(new $scope.BookTo(null, $scope.bookTitle, []),
+    										'Dodaj nową książkę',
+    										'Dodaj książkę',
+    										'dodana.');
     	} else {
-    		properties = new ModalProperties(
-    				angular.copy($scope.books[index]),
-    				'Edytuj książkę',
-    				'Zapisz zmiany',
-    				'zaktualizowana.');
+    		properties = new ModalProperties(angular.copy($scope.books[index]),
+    										'Edytuj książkę',
+    										'Zapisz zmiany',
+    										'zaktualizowana.');
     	}
     	var modalInstance = $modal.open({
     		templateUrl: 'books/html/book-modal-add-book.html',
     		controller: 'BookModalAddBookController',
     		size: 'lg',
+    		scope: $scope,
     		resolve: {
     			properties: function () {
     				return properties;

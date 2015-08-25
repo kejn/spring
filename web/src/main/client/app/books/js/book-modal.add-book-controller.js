@@ -8,14 +8,8 @@ angular.module('app.books').controller('BookModalAddBookController', function ($
     $scope.bookId = properties.book.id;
     $scope.authors = properties.book.authors;
     
-    function BookTo(id, title, authors) {
-    	this.id = id;
-    	this.title = title;
-    	this.authors = authors;
-    }
-    
     $scope.saveBook = function () {
-    	$modalInstance.close(new BookTo($scope.bookId, $scope.bookTitle, $scope.authors));
+    	$modalInstance.close(new $scope.$parent.BookTo($scope.bookId, $scope.bookTitle, $scope.authors));
     };
     
     $scope.addAuthor = function () {

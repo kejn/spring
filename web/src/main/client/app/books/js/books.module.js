@@ -4,7 +4,4 @@ angular.module('app.books', ['ngRoute']).config(function ($routeProvider) {
         templateUrl: 'books/html/book-list.html',
         controller: 'BookSearchController'
     });
-    $routeProvider.when('/books/add-book', {
-        templateUrl: 'books/html/add-book.html'
-    });
 });

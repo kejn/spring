@@ -8,7 +8,7 @@
     "modules": [
         "main",
         "books",
-        "component-1",
+        "authors",
         "component-2"
     ],
     "appBuild": true,

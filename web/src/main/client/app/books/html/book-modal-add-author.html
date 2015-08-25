@@ -1,17 +1,15 @@
 <div>
-    <form novalidate>
+    <form validate ng-submit="addAuthor()">
         <div class="modal-header">
             <h3 class="modal-title">Dodaj autora</h3>
         </div>
         <div class="modal-body">
-			<form>
-            	<input class="form-control" type="text" ng-model="firstName" placeholder="Imię" required/>
-            	<input class="form-control" type="text" ng-model="lastName" placeholder="Nazwisko" required/>
-            </form>
+           	<input class="form-control" type="text" ng-model="firstName" placeholder="Imię" required />
+           	<input class="form-control" type="text" ng-model="lastName" placeholder="Nazwisko" required />
         </div>
         <div class="modal-footer">
-            <button class="btn btn-success" ng-disabled="!(!!firstName && !!lastName)" ng-click="addAuthor()">Dodaj autora</button>
-            <button class="btn btn-warning" ng-click="$dismiss()">Anuluj</button>
+            <input type="submit" value="Dodaj autora" class="btn btn-success" />
+            <input type="button" value="Anuluj" class="btn btn-warning" ng-click="$dismiss()" />
         </div>
     </form>
 </div>

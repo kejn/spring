@@ -19,6 +19,23 @@ describe('book controller', function () {
         expect($scope.search).toBeDefined();
     }));
 
+    it('search should call bookService.search', inject(function ($controller, $q, bookService) {
+    	// given
+    	$controller('BookSearchController', {$scope: $scope});
+    	$scope.bookTitle = 'a';
+    	$scope.books = [{id: 1, title: 'test'}, {id: 2, title: 'abc'}, {id: 3, title: 'xyz'}];
+    	var response = { data: [{id: 2, title: 'abc'}]};
+        var searchDeferred = $q.defer();
+        spyOn(bookService, 'search').and.returnValue(searchDeferred.promise);
+        // when
+        $scope.search();
+        searchDeferred.resolve(response);
+        $scope.$digest();
+    	// then
+        expect(bookService.search).toHaveBeenCalledWith($scope.bookTitle);
+        expect($scope.books.length).toBe(1);
+    }));
+
     it('delete book should call bookService.deleteBook', inject(function ($controller, $q, bookService, Flash) {
         // given
         $controller('BookSearchController', {$scope: $scope});
@@ -38,18 +55,10 @@ describe('book controller', function () {
         expect($scope.books.length).toBe(0);
     }));
     
-    // wrzuć to gdzie indziej
-//    it('add book is defined', inject(function ($controller) {
-//    	// when
-//    	$controller('BookModalAddBookController', {$scope: $scope});
-//    	// then
-//    	expect($scope.search).toBeDefined();
-//    }));
-//
-//    it('add author is defined', inject(function ($controller) {
-//        // when
-//        $controller('BookModalAddAuthorController', {$scope: $scope});
-//        // then
-//        expect($scope.search).toBeDefined();
-//    }));
+    it('adding and updating book is defined', inject(function ($controller) {
+    	// when
+    	$controller('BookSearchController', {$scope: $scope});
+    	// then
+    	expect($scope.addOrUpdateBook).toBeDefined();
+    }));
 });

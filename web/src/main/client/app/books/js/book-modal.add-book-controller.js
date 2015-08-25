@@ -1,5 +1,8 @@
-angular.module('app.books').controller('BookModalAddBookController', function ($scope, $modal, $modalInstance, properties) {
+angular.module('app.books').controller('BookModalAddBookController', function ($scope, $modal, $modalInstance, properties, Flash) {
     'use strict';
+    
+    Flash.dismiss();
+    $scope.$parent.editing = true;
     
     $scope.modalTitle = properties.modalTitle;
     $scope.buttonText = properties.buttonText;
@@ -19,6 +22,7 @@ angular.module('app.books').controller('BookModalAddBookController', function ($
             size: 'sm'
         });
         modalInstance.result.then(function (newAuthor) {
+        	Flash.dismiss();
         	$scope.authors.push(newAuthor);
         });
     };
@@ -27,14 +31,10 @@ angular.module('app.books').controller('BookModalAddBookController', function ($
     	$scope.authors.splice(index,1);
     };
     
-    $scope.authorsAreValid = function() {
+    $scope.authorsNotEmpty = function() {
     	if($scope.authors.length === 0) {
+    		Flash.create('danger', 'Lista autorów jest pusta!', 'custom-class');
     		return false;
-    	}
-    	for(var i = 0; i < $scope.authors.length; ++i) {
-    		if(!!!$scope.authors[i].firstName || !!!$scope.authors[i].lastName) {
-    			return false;
-    		}
     	}
     	return true;
     };

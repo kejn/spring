@@ -1,5 +1,5 @@
 <div>
-    <form validate name="addBookForm" ng-submit="authorsNotEmpty() && saveBook()">
+    <form validate ng-submit="authorsNotEmpty() && saveBook()">
         <div class="modal-header">
             <h3 class="modal-title">{{ modalTitle }}</h3>
         </div>
@@ -18,7 +18,7 @@
         </div>
         <div class="modal-footer">
             <input type="submit" ng-value="buttonText" class="btn btn-success" />
-            <input type="button" value="Anuluj" class="btn btn-warning" ng-click="editing = false;$dismiss()" />
+            <input type="button" value="Anuluj" class="btn btn-warning" ng-click="$dismiss()" />
         </div>
     </form>
 </div>

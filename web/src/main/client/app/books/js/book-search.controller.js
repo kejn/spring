@@ -84,10 +84,12 @@ angular.module('app.books').controller('BookSearchController', function ($scope,
     		}, function() {
     			Flash.create('danger', 'Błąd operacji na książce.', 'custom-class');
     		});
-    	});
-    	modalInstance.result.finally(function () {
+    		$scope.editing = false;
+    	}, function () {
+    		Flash.dismiss();
     		$scope.editing = false;
     	});
+
     };
 
 });

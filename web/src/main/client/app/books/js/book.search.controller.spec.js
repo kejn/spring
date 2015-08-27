@@ -115,6 +115,8 @@ describe('book controller', function () {
 //    				modalTitle: 'Dodaj nową książkę',
 //    				buttonText: 'Dodaj książkę',
 //    				messageSuffix: 'dodana.'};
+    		console.log(spyOpen.calls.mostRecent().args[0].resolve.properties);
+    		expect(spyOpen.calls.mostRecent().args[0].resolve.properties).toBe( function() {});
     	}));
 
     	it('should call bookService.saveBook and fail', inject(function ($controller, $modal, $q, bookService, Flash) {

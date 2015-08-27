@@ -12,13 +12,13 @@
     </style>
 </head>
 <body>
-<div class="header low">
+<div class="header high">
     <h1>Code coverage report for <span class="entity">./app/main/js/current-context-path.service.js</span></h1>
     <h2>
-        Statements: <span class="metric">21.43% <small>(3 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Branches: <span class="metric">0% <small>(0 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Functions: <span class="metric">50% <small>(1 / 2)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Lines: <span class="metric">21.43% <small>(3 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">100% <small>(14 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">75% <small>(9 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">100% <small>(2 / 2)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">100% <small>(14 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
     <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">./app/main/js/</a> &#187; current-context-path.service.js</div>
@@ -53,27 +53,27 @@
 26
 27</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10</span>
-<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">31</span>
+<span class="cline-any cline-yes">31</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">6</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -81,25 +81,25 @@
     'use strict';
     var contextPath = '';
     return {
-        get: <span class="fstat-no" title="function not covered" >function () {</span>
-<span class="cstat-no" title="statement not covered" >            var contextPathNotInitializedYet = contextPath ? false : true,</span>
+        get: function () {
+            var contextPathNotInitializedYet = contextPath ? false : true,
                 path,
                 splitPath,
                 parsedContextPath;
-<span class="cstat-no" title="statement not covered" >            if (contextPathNotInitializedYet) {</span>
-<span class="cstat-no" title="statement not covered" >                contextPath = '/';</span>
-<span class="cstat-no" title="statement not covered" >                path = $window.location.pathname;</span>
-<span class="cstat-no" title="statement not covered" >                if (path &amp;&amp; path !== contextPath) {</span>
-<span class="cstat-no" title="statement not covered" >                    splitPath = path.split('/');</span>
-<span class="cstat-no" title="statement not covered" >                    if (splitPath.length &gt; 1) {</span>
-<span class="cstat-no" title="statement not covered" >                        parsedContextPath = splitPath[1];</span>
-<span class="cstat-no" title="statement not covered" >                        if (parsedContextPath) {</span>
-<span class="cstat-no" title="statement not covered" >                            contextPath += parsedContextPath + '/';</span>
+            if (contextPathNotInitializedYet) {
+                contextPath = '/';
+                path = $window.location.pathname;
+                <span class="missing-if-branch" title="else path not taken" >E</span>if (path &amp;&amp; path !== contextPath) {
+                    splitPath = path.split('/');
+                    <span class="missing-if-branch" title="else path not taken" >E</span>if (splitPath.length &gt; 1) {
+                        parsedContextPath = splitPath[1];
+                        <span class="missing-if-branch" title="else path not taken" >E</span>if (parsedContextPath) {
+                            contextPath += parsedContextPath + '/';
                         }
                     }
                 }
             }
-<span class="cstat-no" title="statement not covered" >            return contextPath;</span>
+            return contextPath;
         }
     };
 });
@@ -108,7 +108,7 @@
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Aug 27 2015 09:33:36 GMT+0200 (W. Europe Daylight Time)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Aug 27 2015 13:51:56 GMT+0200 (W. Europe Daylight Time)</div>
 </div>
 <script src="../../../prettify.js"></script>
 <script>

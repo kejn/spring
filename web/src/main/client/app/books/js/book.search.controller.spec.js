@@ -85,14 +85,13 @@ describe('book controller', function () {
     	var saveDeferred;
     	var modalDeferred;
     	var book;
-    	var spyOpen;
     	beforeEach(inject(function ($controller, $modal, $q, bookService, Flash) {
     		$scope.books = [];
     		$controller('BookSearchController', {$scope: $scope, $modal: $modal});
     		book = {id: null, title: 'test', authors: [{id: null, firstName: 'author', lastName: '1'}]};
     		saveDeferred = $q.defer();
     		modalDeferred = $q.defer();
-    		spyOpen = spyOn($modal, 'open').and.returnValue({result: modalDeferred.promise});
+    		spyOn($modal, 'open').and.returnValue({result: modalDeferred.promise});
     		spyOn(bookService, 'saveBook').and.returnValue(saveDeferred.promise);
     		spyOn(Flash, 'create');
     	}));
@@ -111,12 +110,6 @@ describe('book controller', function () {
     		expect(Flash.create).toHaveBeenCalledWith('success', 'Książka "test" została dodana.', 'custom-class');
     		expect($scope.books.length).toBe(1);
     		expect($scope.editing).toBe(false);
-//    		var properties = {book: {id: null, title: book.title, authors: []},
-//    				modalTitle: 'Dodaj nową książkę',
-//    				buttonText: 'Dodaj książkę',
-//    				messageSuffix: 'dodana.'};
-    		console.log(spyOpen.calls.mostRecent().args[0].resolve.properties);
-    		expect(spyOpen.calls.mostRecent().args[0].resolve.properties).toBe( function() {});
     	}));
 
     	it('should call bookService.saveBook and fail', inject(function ($controller, $modal, $q, bookService, Flash) {

@@ -49,14 +49,14 @@ angular.module('app.books').controller('BookSearchController', function ($scope,
 
     $scope.addOrUpdateBook = function (index) {
     	var newBook = (typeof index === 'undefined');
-    	var properties;
+    	
     	if (newBook) {
-    		properties = new ModalProperties(new $scope.BookTo(null, $scope.bookTitle, []),
+    		$scope.properties = new ModalProperties(new $scope.BookTo(null, $scope.bookTitle, []),
     										'Dodaj nową książkę',
     										'Dodaj książkę',
     										'dodana.');
     	} else {
-    		properties = new ModalProperties(angular.copy($scope.books[index]),
+    		$scope.properties = new ModalProperties(angular.copy($scope.books[index]),
     										'Edytuj książkę',
     										'Zapisz zmiany',
     										'zaktualizowana.');
@@ -65,12 +65,7 @@ angular.module('app.books').controller('BookSearchController', function ($scope,
     		templateUrl: 'books/html/book-modal-add-book.html',
     		controller: 'BookModalAddBookController',
     		size: 'lg',
-    		scope: $scope,
-    		resolve: {
-    			properties: function () {
-    				return properties;
-    			}
-    		}
+    		scope: $scope
     	});
     	modalInstance.result.then(function (bookTo) {
     		bookService.saveBook(bookTo).then(function (book) {
@@ -79,7 +74,7 @@ angular.module('app.books').controller('BookSearchController', function ($scope,
     			} else {
     				angular.copy(book.data, $scope.books[index]);
     			}
-    			var message = 'Książka "' + book.data.title + '" została ' + properties.messageSuffix;
+    			var message = 'Książka "' + book.data.title + '" została ' + $scope.properties.messageSuffix;
     			Flash.create('success', message, 'custom-class');
     		}, function() {
     			Flash.create('danger', 'Błąd operacji na książce.', 'custom-class');

@@ -1,15 +1,15 @@
-angular.module('app.books').controller('BookModalAddBookController', function ($scope, $modal, $modalInstance, properties, Flash) {
+angular.module('app.books').controller('BookModalAddBookController', function ($scope, $modal, $modalInstance, Flash) {
     'use strict';
     
     Flash.dismiss();
     $scope.$parent.editing = true;
     
-    $scope.modalTitle = properties.modalTitle;
-    $scope.buttonText = properties.buttonText;
+    $scope.modalTitle = $scope.$parent.properties.modalTitle;
+    $scope.buttonText = $scope.$parent.properties.buttonText;
     
-    $scope.bookTitle = properties.book.title;
-    $scope.bookId = properties.book.id;
-    $scope.authors = properties.book.authors;
+    $scope.bookTitle = $scope.$parent.properties.book.title;
+    $scope.bookId = $scope.$parent.properties.book.id;
+    $scope.authors = $scope.$parent.properties.book.authors;
     
     $scope.saveBook = function () {
     	$modalInstance.close(new $scope.$parent.BookTo($scope.bookId, $scope.bookTitle, $scope.authors));

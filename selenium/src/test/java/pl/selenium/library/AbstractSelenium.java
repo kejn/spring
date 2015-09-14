@@ -29,7 +29,7 @@ public class AbstractSelenium {
 		FirefoxProfile profile = new FirefoxProfile();
 		profile.setPreference("init.accept_languages", "pl");
 		driver = new FirefoxDriver(profile);
-		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 	}
 
 	@After
@@ -47,6 +47,6 @@ public class AbstractSelenium {
 		File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		File destFile = new File(SCREENSHOT_LOCATION + screenshot.getName());
 		FileUtils.copyFile(screenshot, destFile);
-		System.out.printf("[[ATTACHMENT | %s]]", destFile.getAbsolutePath());
+		System.out.printf("[[ATTACHMENT | %s]]\n", destFile.getAbsolutePath());
 	}
 }

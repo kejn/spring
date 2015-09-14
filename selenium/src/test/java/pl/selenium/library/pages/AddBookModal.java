@@ -13,13 +13,10 @@ import pl.selenium.library.AbstractPageObject;
 public class AddBookModal extends AbstractPageObject {
 	
 	private final String alertMessageCSS = ".modal-body > div:nth-child(3)";
-	
+
 	@FindBy(css=".form-control")
 	private WebElement bookTitle;
 
-	@FindBy(className="p.ng-scope")
-	private WebElement[] authors;  
-	
 	@FindBy(css="input.btn.btn-primary")
 	private WebElement addAuthorButton;
 
@@ -52,6 +49,10 @@ public class AddBookModal extends AbstractPageObject {
 		this.bookTitle.sendKeys(bookTitle);
 	}
 
+	public String getBookTitle() {
+		return this.bookTitle.getText();
+	}
+	
 	public void clickSaveBookButton() {
 		saveBookButton.click();
 	}

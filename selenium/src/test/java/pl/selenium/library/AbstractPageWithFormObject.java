@@ -6,14 +6,27 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+/**
+ * Represents webpage which contains a form. Requires subclass to implement
+ * method returning form to be validated.
+ * 
+ * @author KNIEMCZY
+ */
 public abstract class AbstractPageWithFormObject extends AbstractPageObject {
 
 	public AbstractPageWithFormObject(WebDriver driver) {
 		super(driver);
 	}
 
+	/**
+	 * @return form to be validated.
+	 */
 	public abstract WebElement getForm();
-	
+
+	/**
+	 * @return <b>true</b> if form contains any <code>required</code> input
+	 *         which is <code>invalid</code>
+	 */
 	@SuppressWarnings("deprecation")
 	public boolean hasError() {
 		try {

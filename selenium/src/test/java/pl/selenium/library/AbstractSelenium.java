@@ -17,8 +17,12 @@ import org.openqa.selenium.support.PageFactory;
 
 import pl.selenium.library.pages.WelcomePage;
 
+/**
+ * Abstract test class for selenium with Firefox webdriver.
+ * @author KNIEMCZY
+ */
 @RunWith(SeleniumScreenshotJUnit4Runner.class)
-public class AbstractSelenium {
+public abstract class AbstractSelenium {
 
 	private static final String SCREENSHOT_LOCATION = "C:\\tmp\\";
 	
@@ -39,10 +43,17 @@ public class AbstractSelenium {
 		}
 	}
 
+	/**
+	 * @return WelcomePage initialized with {@link #driver}
+	 */
 	public WelcomePage openWelcomePage() {
 		return PageFactory.initElements(driver, WelcomePage.class);
 	}
 
+	/**
+	 * Takes screenshot.
+	 * @throws IOException if <code>copyFile</code> operation fails
+	 */
 	public void takeScreenshot() throws IOException {
 		File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		File destFile = new File(SCREENSHOT_LOCATION + screenshot.getName());

@@ -8,17 +8,37 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+/**
+ * Page in which user can list all books from the repository. Available
+ * operations are searching, adding, editing and deleting.
+ * 
+ * @author KNIEMCZY
+ */
 public class ListBooksPage extends NavigationBarOnPage {
 
+	/**
+	 * Alert showing information for the user if transaction between browser and
+	 * server was successful (green background) or not (red background).
+	 */
 	@FindBy(css = "section.ng-scope > div:nth-child(1)")
 	private WebElement alert;
 
+	/**
+	 * Input: title prefix for searching books
+	 */
 	@FindBy(css = ".ng-pristine")
 	private WebElement searchInput;
 
+	/**
+	 * Button executing book searching action based on text in
+	 * {@link #searchInput}
+	 */
 	@FindBy(css = "section.ng-scope > button:nth-child(4)")
 	private WebElement searchButton;
 
+	/**
+	 * Button opening AddBookModal
+	 */
 	@FindBy(css = "section.ng-scope > button:nth-child(5)")
 	private WebElement addBookButton;
 
@@ -26,16 +46,28 @@ public class ListBooksPage extends NavigationBarOnPage {
 		super(driver);
 	}
 
+	/**
+	 * @return AddBookModal
+	 */
 	public AddBookModal clickAddBookButton() {
 		addBookButton.click();
 		return PageFactory.initElements(driver, AddBookModal.class);
 	}
 
+	/**
+	 * Set text for {@link #titlePrefix}.
+	 * 
+	 * @param titlePrefix
+	 *            to be set.
+	 */
 	public void setTitlePrefix(String titlePrefix) {
 		searchInput.clear();
 		searchInput.sendKeys(titlePrefix);
 	}
 
+	/**
+	 * @return <b>true</b> if there was recently shown successful alert 
+	 */
 	@SuppressWarnings("deprecation")
 	public boolean alertSuccess() {
 		try {
@@ -47,10 +79,16 @@ public class ListBooksPage extends NavigationBarOnPage {
 		return false;
 	}
 
+	/**
+	 * Clicks on {@link #searchButton}
+	 */
 	public void clickSearchButton() {
 		searchButton.click();
 	}
 
+	/**
+	 * @return number of rows in table containing book search results.
+	 */
 	@SuppressWarnings("deprecation")
 	public int countBooks() {
 		int result = 0;
@@ -62,6 +100,9 @@ public class ListBooksPage extends NavigationBarOnPage {
 		return result;
 	}
 
+	/**
+	 * @param index of results table row
+	 */
 	@SuppressWarnings("deprecation")
 	public void clickDeleteButton(int index) {
 		try {
@@ -73,6 +114,11 @@ public class ListBooksPage extends NavigationBarOnPage {
 		}
 	}
 
+	/**
+	 * 
+	 * @param index of results table row
+	 * @return AddBookModal if the EDIT button was found. <b>null</b> otherwise.
+	 */
 	@SuppressWarnings("deprecation")
 	public AddBookModal clickEditBookButton(int index) {
 		try {

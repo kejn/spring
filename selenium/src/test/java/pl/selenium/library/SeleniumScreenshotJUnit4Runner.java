@@ -6,6 +6,12 @@ import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.InitializationError;
 import org.junit.runners.model.Statement;
 
+/**
+ * Required to be run with by AbstractSelenium. Calls
+ * <code>takeScreenshot()</code> method when test fails.
+ * 
+ * @author KNIEMCZY
+ */
 public class SeleniumScreenshotJUnit4Runner extends BlockJUnit4ClassRunner {
 
 	public SeleniumScreenshotJUnit4Runner(Class<AbstractSelenium> clazz) throws InitializationError {
@@ -20,7 +26,7 @@ public class SeleniumScreenshotJUnit4Runner extends BlockJUnit4ClassRunner {
 				try {
 					super.evaluate();
 				} catch (Throwable t) {
-					((AbstractSelenium)test).takeScreenshot();
+					((AbstractSelenium) test).takeScreenshot();
 					throw t;
 				}
 			}

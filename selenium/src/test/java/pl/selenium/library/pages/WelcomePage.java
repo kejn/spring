@@ -2,6 +2,10 @@ package pl.selenium.library.pages;
 
 import org.openqa.selenium.WebDriver;
 
+/**
+ * Welcome page. 
+ * @author KNIEMCZY
+ */
 public class WelcomePage extends NavigationBarOnPage {
 	
 	public WelcomePage(WebDriver driver) {
